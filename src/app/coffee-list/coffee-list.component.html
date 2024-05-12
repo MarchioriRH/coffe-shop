@@ -1,0 +1,22 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <th>Precio</th>
+            <th>Stock</th>
+        </tr>
+    </thead>  
+
+    <tbody>  
+        <tr *ngFor="let coffee of coffees">
+            <td><img [src]="coffee.image" [alt]="coffee.name" height="100" width="100"> </td>
+            <td>{{coffee.name}}</td>
+            <td>{{coffee.type}}</td>
+            <td>{{coffee.price}}</td>
+            <td>{{coffee.stock}}</td>
+            <td><button class="btn btn-primary">Agregar al carrito</button></td>
+        </tr>
+    </tbody>
+</table>
