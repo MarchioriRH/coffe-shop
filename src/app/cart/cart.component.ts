@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -6,16 +7,30 @@ import { Component } from '@angular/core';
   styleUrl: './cart.component.scss'
 })
 export class CartComponent {
-  cart = [
-    { name: 'Americano', quantity: 1, price: 2.5, total: 0 },
-    { name: 'Cappuccino', quantity: 2, price: 5, total: 0 },
-    { name: 'Espresso', quantity: 1, price: 2.5, total: 0 },
+  private cartService: CartService;
+  products: any[] = [];
+  balance = 0;
 
-  ];
+  
+  constructor(cartService: CartService) {
+    this.cartService = cartService;
+    this.products = this.cartService.getProducts();
+    //this.balance = this.cartService.calculateBalance();
+  }
 
-  constructor() {
+  calculateBalance(products: any[]) : number{
+    this.balance = 0; 
+    for (let i = 0; i < products.length; i++) {
+      console.log('item: '+products[i].price);
+      this.balance += products[i].price;
+    }
+    console.log('balance. '+this.balance);
+    return this.balance;
+  }
+
+  removeFromCart(product: any) {
+    this.cartService.delProduct(product);
   }
 }
-
 
 

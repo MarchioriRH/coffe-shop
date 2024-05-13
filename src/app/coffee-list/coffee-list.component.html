@@ -16,7 +16,7 @@
             <td>{{coffee.type}}</td>
             <td>{{coffee.price}}</td>
             <td>{{coffee.stock}}</td>
-            <td><button class="btn btn-primary">Agregar al carrito</button></td>
+            <td><button class="btn btn-primary" (click)="addToCart(coffee)">Agregar al carrito</button></td>
         </tr>
     </tbody>
 </table>

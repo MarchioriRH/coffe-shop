@@ -2,17 +2,20 @@
     <thead>
         <tr>
             <th>Poducto</th>
-            <th>Cantidad</th>
             <th>Precio Unitario</th>
-            <th>Total</th>
+            <th></th>
         </tr>
     </thead> 
     <tbody>
-        <tr *ngFor="let item of cart">
+        <tr *ngFor="let item of products">
             <td>{{item.name}}</td>
-            <td>{{item.quantity}}</td>
             <td>{{item.price}}</td>
-            <td>{{item.price * item.quantity}}</td>
+            <td><button class="btn btn-danger" (click)="removeFromCart(item)">Eliminar</button></td>
+        </tr>
+        <tr>    
+            <td>Total</td>
+            <!--td>{{balances[balances.length - 1]}}</td-->
+            <td>{{calculateBalance(products)}}</td>
         </tr>
     </tbody> 
 </table>
