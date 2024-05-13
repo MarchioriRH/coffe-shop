@@ -21,9 +21,11 @@ export class CartService {
 
   delProduct(product: any) {
     // Lógica para quitar un producto del carrito
-    const index = this.products.indexOf(product);
-    if (index !== -1) {
-      this.products.splice(index, 1);
+    const productIndex = this.products.indexOf(product);
+    const balanceIndex = this.balances.indexOf(product.price);
+    if (productIndex !== -1) {
+      this.products.splice(productIndex, 1);
+      this.balances.splice(balanceIndex, 1);
     }
   }
 
@@ -41,15 +43,5 @@ export class CartService {
     console.log('Cart service 1: ' + this.balance); 
     // return this.balances;
     return this.balance;
-  }
-
-  adecuateBalance(product: any) {
-    // Lógica para ajustar el saldo total del carrito
-    let index = this.products.indexOf(product);
-    if (index > -1) {
-      this.balances.splice(index, 1);
-    }
-    this.balances[this.balances.length - 1] -= product.price;
-    
   }
 }

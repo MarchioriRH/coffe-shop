@@ -12,10 +12,9 @@
             <td>{{item.price}}</td>
             <td><button class="btn btn-danger" (click)="removeFromCart(item)">Eliminar</button></td>
         </tr>
-        <tr>    
-            <td>Total</td>
-            <!--td>{{balances[balances.length - 1]}}</td-->
-            <td>{{calculateBalance(products)}}</td>
+        <tr> 
+            <td>Total</td>       
+            <td >{{calculateBalance()}}</td>
         </tr>
     </tbody> 
 </table>

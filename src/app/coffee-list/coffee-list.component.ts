@@ -20,7 +20,6 @@ export class CoffeeListComponent {
 
   addToCart(product: any) {
     this.cartService.addProduct(product);
-    this.cartService.calculateBalance();
   }
 
 }
