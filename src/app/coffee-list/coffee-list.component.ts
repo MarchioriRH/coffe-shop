@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { CartService } from '../cart.service';
+import { Coffee } from './Coffee';
+import { CoffeeService } from '../coffee.service';
 
 @Component({
   selector: 'app-coffee-list',
@@ -7,19 +9,27 @@ import { CartService } from '../cart.service';
   styleUrl: './coffee-list.component.scss'
 })
 export class CoffeeListComponent {
-  private cartService: CartService;
-  coffees = [
-    { name: 'Americano', type: "americano", price: 2.5, stock: 10, image: 'assets/img/americano.jpg'},
-    { name: 'Cappuccino', type: "italiano", price: 3.5, stock: 5, image: 'assets/img/capuccino.jpg'},
-    { name: 'Espresso', type: "italiano", price: 2.0, stock: 20, image: 'assets/img/espresso.jpg'},
-    { name: 'Latte', type: "NY", price: 3.0, stock: 3, image: 'assets/img/latte.jpg'}
-  ];
-  constructor(cartService: CartService) {
-    this.cartService = cartService;
+  cartService: CartService;
+  coffeeService: CoffeeService;
+  coffees: Coffee[] = [];
+
+  constructor(cartService: CartService, coffeeService: CoffeeService) {  
+    this.cartService = cartService; 
+    this.coffeeService = coffeeService;
   }
 
+  // Method to get a list of products.
+  ngOnInit() {
+    this.coffees = CoffeeService.getCoffees();
+  }
+
+  // Method to add a product to the cart.
   addToCart(product: any) {
+    if (product.stock <= 0) {
+      return;
+    }
     this.cartService.addProduct(product);
-  }
-
+    this.coffees = this.coffeeService.changeStock(product, 'remove'); // Change the stock of the product
+  }  
 }
+

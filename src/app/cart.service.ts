@@ -1,47 +1,60 @@
 import { Injectable } from '@angular/core';
-//import { CoffeeListComponent } from './coffee-list/coffee-list.component';
+import { CoffeeService } from './coffee.service';
 
 @Injectable({
-  providedIn: 'root', // Esto asegura que el servicio esté disponible en toda la aplicación
+  providedIn: 'root', // This ensures that the service is provided in the root injector
 })
 export class CartService {
-  private products: any[] = []; // Aquí almacenaremos los product en el carrito
-  private balances: number[] = [];
-  balance = 0; // Aquí almacenaremos el saldo total del carrito
+  private products: any[] = []; // Here we will store the products in the cart
+  private balances: number[] = []; // Here we will store the prices of the products in the cart
+  private coffeeService: CoffeeService; 
+ 
 
-  constructor() {}
-
-  addProduct(product: any) {
-    // Lógica para agregar un producto al carrito
-    this.products.push(product);
-    //this.balance += product.price; // Asume que cada producto tiene una propiedad "precio"
-    this.balances.push(product.price);
-    //console.log('Cart service: ' + this.balance);
+  constructor(coffeeService : CoffeeService) {
+    this.coffeeService = coffeeService;
   }
 
+  // Method to add a product to the cart.
+  addProduct(product: any) {
+    // Lógica para agregar un producto al carrito
+    if (product.stock <= 0) {
+      return;
+    }
+    this.products.push(product);
+    this.balances.push(product.price);
+  }
+
+  // Method to remove a product from the cart.
   delProduct(product: any) {
-    // Lógica para quitar un producto del carrito
     const productIndex = this.products.indexOf(product);
     const balanceIndex = this.balances.indexOf(product.price);
     if (productIndex !== -1) {
       this.products.splice(productIndex, 1);
       this.balances.splice(balanceIndex, 1);
-    }
+    }    
+    this.coffeeService.changeStock(product, 'add');
   }
 
+  // Method to get a list of products.  
   getProducts(): any[] {
-    // Retorna la lista de product en el carrito
     return this.products;
   }
 
+  // Method to calculate the total balance of the cart.
   calculateBalance() : number {
-    // // Lógica para calcular el saldo total del carrito  
-    this.balance = 0;
+    let balance = 0;
     for(let i = 0; i < this.balances.length; i++) {
-      this.balance += this.balances[i];
+      balance += this.balances[i];
     }
-    console.log('Cart service 1: ' + this.balance); 
-    // return this.balances;
-    return this.balance;
+    return balance;
+  }
+
+  // Method to clear the cart.
+  clearCart() {
+    for(let i = 0; i < this.products.length; i++) {
+      this.coffeeService.changeStock(this.products[i], 'add');
+    }
+    this.products = [];
+    this.balances = [];
   }
 }

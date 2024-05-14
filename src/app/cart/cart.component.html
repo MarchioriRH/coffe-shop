@@ -2,19 +2,43 @@
     <thead>
         <tr>
             <th>Poducto</th>
-            <th>Precio Unitario</th>
+            <th style="text-align: center;">Precio</th>
             <th></th>
         </tr>
     </thead> 
     <tbody>
-        <tr *ngFor="let item of products">
-            <td>{{item.name}}</td>
-            <td>{{item.price}}</td>
-            <td><button class="btn btn-danger" (click)="removeFromCart(item)">Eliminar</button></td>
-        </tr>
-        <tr> 
-            <td>Total</td>       
-            <td >{{calculateBalance()}}</td>
-        </tr>
+        @for (product of products; track product.id) {
+            <tr>
+                <td>{{ product.name }}</td>
+                <td style="text-align: center;">{{ product.price | currency }}</td>
+                <td>
+                    <button type="button" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Quitar" (click)="removeFromCart(product)">
+                        <i class="bi bi-trash3" style="font-size: 1em; color: rgb(20, 20, 20); cursor: pointer;"></i>
+                    </button>
+                </td>
+            </tr>
+        } @empty {
+            <tr>
+                <td colspan="3" class="badge text-bg-secondary">No hay productos en el carrito.</td>
+            </tr>
+        }
+            <tr> 
+                @if (products.length > 0) {
+                <td>Total</td>       
+                <td style="text-align: center;">{{ calculateBalance() | currency }}</td>
+                    <td>
+                        <button type="button" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Comprar">
+                            <!--<i class="bi bi-cart-plus" style="font-size: 1em; color: rgb(20, 20, 20); cursor: pointer;"></i>-->Comprar
+                        </button>                         
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" (click)="clearCart()" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Vaciar carrito">
+                            <i class="bi bi-x-circle" style="font-size: 1em; color: rgb(245, 238, 238); cursor: pointer;"></i>
+                        </button>                        
+                    </td>
+                } @else {
+                    <td></td>
+                }
+            </tr>
     </tbody> 
 </table>
