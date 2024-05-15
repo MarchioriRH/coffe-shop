@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CartService } from '../cart.service';
 import { Coffee } from './Coffee';
 import { CoffeeService } from '../coffee.service';
@@ -12,17 +12,17 @@ export class CoffeeListComponent {
   cartService: CartService;
   coffeeService: CoffeeService;
   coffees: Coffee[] = [];
-
+  
   constructor(cartService: CartService, coffeeService: CoffeeService) {  
     this.cartService = cartService; 
     this.coffeeService = coffeeService;
   }
-
+  
   // Method to get a list of products.
   ngOnInit() {
     this.coffees = CoffeeService.getCoffees();
   }
-
+  
   // Method to add a product to the cart.
   addToCart(product: any) {
     if (product.stock <= 0) {
@@ -31,5 +31,9 @@ export class CoffeeListComponent {
     this.cartService.addProduct(product);
     this.coffees = this.coffeeService.changeStock(product, 'remove'); // Change the stock of the product
   }  
+
+  maxReached(m : string) {
+    alert(m);
+  }
 }
 

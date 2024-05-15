@@ -5,5 +5,6 @@ export interface Coffee {
     price: number;
     stock: number;
     image: string;
-    //description: string;
+    quantity: number;
+    clearance: boolean;
 }

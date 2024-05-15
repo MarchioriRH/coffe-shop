@@ -11,8 +11,8 @@
 
     <tbody>  
         @for (coffee of coffees; track coffee.id) {
-            <tr>
-              <td><img [src]="coffee.image" [alt]="coffee.name" height="100" width="100"> </td>
+            <tr [ngClass]="{'clearance': coffee.clearance}">
+              <td><img class="img-tumbnail" [src]="coffee.image" [alt]="coffee.name" height="100" width="100"> </td>
               <td>{{ coffee.name }}</td>
               <td>{{ coffee.type }}</td>
               <td style="text-align: center;">{{ coffee.price | currency }}</td>
@@ -21,6 +21,9 @@
               } @else {
                 <td><span class="badge rounded-pill text-bg-warning">SIN STOCK</span></td>
               }
+              <td>
+                <app-coffee-shop-buy-quantity-input *ngIf="coffee.stock" [(quantity)]="coffee.quantity" [max] = "coffee.stock" (maxReached)="maxReached($event)"></app-coffee-shop-buy-quantity-input>
+              </td>
               <td>
                 <button class="btn btn-success" type="button" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Agregar al carrito" (click)="addToCart(coffee)">
                   <i class="bi bi-cart-check" style="font-size: 1em; color: rgb(245, 238, 238); cursor: pointer;"></i>

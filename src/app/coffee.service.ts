@@ -15,10 +15,10 @@ export class CoffeeService {
   // Method to get a mockup of products.
   static getCoffees() : Coffee [] {
     return [
-      { id: 1, name: 'Americano', type: "americano", price: 2.5, stock: 10, image: 'assets/img/americano.jpg'},
-      { id: 2, name: 'Cappuccino', type: "italiano", price: 3.5, stock: 5, image: 'assets/img/capuccino.jpg'},
-      { id: 3, name: 'Espresso', type: "italiano", price: 2.0, stock: 20, image: 'assets/img/espresso.jpg'},
-      { id: 4, name: 'Latte', type: "NY", price: 3.0, stock: 3, image: 'assets/img/latte.jpg'}
+      { id: 1, name: 'Americano', type: "americano", price: 2.5, stock: 10, image: 'assets/img/americano.jpg', clearance: false, quantity: 0},
+      { id: 2, name: 'Cappuccino', type: "italiano", price: 3.5, stock: 5, image: 'assets/img/capuccino.jpg', clearance: true, quantity: 0},
+      { id: 3, name: 'Espresso', type: "italiano", price: 2.0, stock: 20, image: 'assets/img/espresso.jpg', clearance: false, quantity: 0},
+      { id: 4, name: 'Latte', type: "NY", price: 3.0, stock: 3, image: 'assets/img/latte.jpg', clearance: false, quantity: 0}
     ];
   }
 

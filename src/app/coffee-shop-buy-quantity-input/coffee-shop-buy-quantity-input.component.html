@@ -1,0 +1,11 @@
+<div class="input-group">
+    <div class="form-group">                  
+        <button type="button" class="btn btn-default btn-xs" (click)="downQuantity()">
+        <i class="bi bi-dash-circle-fill" style="font-size: 1.5em; color:tomato; cursor: pointer;"></i>
+        </button>
+        <input type="text" [(ngModel)]="quantity" size="2em" (keyup)="changeQuantity($event)"> 
+        <button type="button" class="btn btn-default btn-xs" (click)="upQuantity()">
+        <i class="bi bi-plus-circle-fill" style="font-size: 1.5em; color:rgb(34, 67, 0); cursor: pointer;"></i>                    
+        </button>
+    </div>
+</div>
