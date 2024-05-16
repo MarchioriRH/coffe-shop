@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { CartService } from '../cart.service';
 import { Coffee } from './Coffee';
 import { CoffeeService } from '../coffee.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-coffee-list',
@@ -10,27 +11,26 @@ import { CoffeeService } from '../coffee.service';
 })
 export class CoffeeListComponent {
   cartService: CartService;
-  coffeeService: CoffeeService;
-  coffees: Coffee[] = [];
+  coffeeList$: Observable<Coffee[]>;
   
   constructor(cartService: CartService, coffeeService: CoffeeService) {  
+    this.coffeeList$ = coffeeService.coffeeList.asObservable();
     this.cartService = cartService; 
-    this.coffeeService = coffeeService;
   }
   
   // Method to get a list of products.
   ngOnInit() {
-    this.coffees = CoffeeService.getCoffees();
   }
   
   // Method to add a product to the cart.
-  addToCart(product: any) {
-    if (product.stock <= 0) {
+  addToCart(coffee: Coffee) : void{
+    if (coffee.stock <= 0 || coffee.quantity <= 0) {
       return;
     }
-    this.cartService.addProduct(product);
-    this.coffees = this.coffeeService.changeStock(product, 'remove'); // Change the stock of the product
-  }  
+    this.cartService.addProduct(coffee);
+    coffee.stock -= coffee.quantity;
+    coffee.quantity = 0;
+  }    
 
   maxReached(m : string) {
     alert(m);

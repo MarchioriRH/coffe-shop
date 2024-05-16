@@ -8,7 +8,7 @@ import { CoffeeShopCoffeesComponent } from './coffee-shop-coffees/coffee-shop-co
 const routes: Routes = [
   { path: '', redirectTo: '/coffees', pathMatch: 'full' },
   { path: 'coffees', component: CoffeeShopCoffeesComponent },
-  // { path: 'cart', component: CartComponent },
+  { path: 'cart', component: CartComponent },
   { path: 'about', component: CoffeeShopAboutComponent }
 ];
 

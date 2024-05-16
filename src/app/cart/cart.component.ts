@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { CartService } from '../cart.service';
+import { Coffee } from '../coffee-list/Coffee';
+import { Observable } from 'rxjs';
+import { MdbModalService } from 'mdb-angular-ui-kit/modal'; // Add this line
 
 @Component({
   selector: 'app-cart',
@@ -7,13 +10,19 @@ import { CartService } from '../cart.service';
   styleUrl: './cart.component.scss'
 })
 export class CartComponent {
-  private cartService: CartService;
-  products: any[] = [];
-  
-  constructor(cartService: CartService) {
+  cart$: Observable<Coffee[]>;
+  cartService: CartService;
+
+  constructor(cartService: CartService, @Inject(MdbModalService) private modalService: MdbModalService) {
+    this.cart$ = cartService.shopCart.asObservable();
     this.cartService = cartService;
-    this.products = this.cartService.getProducts();
+    this.modalService = modalService;
   }
+
+  openModal() {
+    this.modalService.open(CartComponent);
+  }
+
 
   // Method to calculate the total balance of the cart.
   calculateBalance() : number{
@@ -21,14 +30,13 @@ export class CartComponent {
   }
 
   // Method to remove a product from the cart.
-  removeFromCart(product: any) {
-    this.cartService.delProduct(product);
+  removeFromCart(coffee: Coffee) {
+    this.cartService.delProduct(coffee);
   }
 
   // Method to clear the cart.
   clearCart() {
     this.cartService.clearCart();
-    this.products = this.cartService.getProducts();
   }
 }
 

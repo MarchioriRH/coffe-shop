@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Coffee } from './coffee-list/Coffee';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoffeeService {  
+  private _coffeeList: Coffee[] = []; // Here we will store the products in the cart
+  coffeeList: BehaviorSubject<Coffee[]> = new BehaviorSubject<Coffee[]>([]); 
 
-  constructor() {}
 
+  constructor() {
+    this._coffeeList = CoffeeService.getCoffees();
+    this.coffeeList.next(this._coffeeList);
+  }
 
-  /// PREGUNTAR SI ESTO ESTA BIEN
-  private coffees: Coffee[] = CoffeeService.getCoffees();
   
   // Method to get a mockup of products.
   static getCoffees() : Coffee [] {
@@ -23,15 +27,12 @@ export class CoffeeService {
   }
 
   // Method to change the stock of a product.
-  changeStock(product: any, action: string) : Coffee[] {
-    const coffee = this.coffees.find(coffee => coffee.id === product.id);
-    if (coffee) {
-      if (action === 'add') {
-        coffee.stock++;
-      } else {
-        coffee.stock--;
-      }
+  changeStock(coffee: Coffee) {
+    let item = this._coffeeList.find((element) => element.id === coffee.id);
+    if (!item) {
+      return;
     }
-    return this.coffees;
+    item.stock += coffee.quantity;
+    this.coffeeList.next(this._coffeeList);
   }
 }
