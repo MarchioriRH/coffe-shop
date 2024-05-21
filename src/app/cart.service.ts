@@ -31,7 +31,7 @@ export class CartService {
       this.shopCart.next(this._shopCart);
     }
 
-    // Method to clear the cart.
+  // Method to clear the cart.
   clearCart() {
       for (let item of this._shopCart) {
         this.coffeeService.changeStock(item);

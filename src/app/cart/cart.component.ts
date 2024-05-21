@@ -2,27 +2,28 @@ import { Component, Inject } from '@angular/core';
 import { CartService } from '../cart.service';
 import { Coffee } from '../coffee-list/Coffee';
 import { Observable } from 'rxjs';
-import { MdbModalService } from 'mdb-angular-ui-kit/modal'; // Add this line
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
+
 export class CartComponent {
   cart$: Observable<Coffee[]>;
   cartService: CartService;
+  bsModalRef: BsModalRef;
 
-  constructor(cartService: CartService, @Inject(MdbModalService) private modalService: MdbModalService) {
+
+  constructor(cartService: CartService, private modalService: BsModalService) {
     this.cart$ = cartService.shopCart.asObservable();
     this.cartService = cartService;
-    this.modalService = modalService;
   }
 
   openModal() {
-    this.modalService.open(CartComponent);
+    this.bsModalRef = this.modalService.show(BsModalComponent);
   }
-
 
   // Method to calculate the total balance of the cart.
   calculateBalance() : number{
