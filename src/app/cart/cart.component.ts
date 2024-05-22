@@ -1,8 +1,7 @@
-import { Component, Inject } from '@angular/core';
-import { CartService } from '../cart.service';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { CartService } from '../../services/cart.service';
 import { Coffee } from '../coffee-list/Coffee';
-import { Observable } from 'rxjs';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -10,19 +9,23 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   styleUrl: './cart.component.scss'
 })
 
-export class CartComponent {
-  cart$: Observable<Coffee[]>;
+export class CartComponent implements OnInit, OnDestroy{
+  cart$: Coffee[] = [];
   cartService: CartService;
-  bsModalRef: BsModalRef;
+  private subscription: Subscription = new Subscription;
 
-
-  constructor(cartService: CartService, private modalService: BsModalService) {
-    this.cart$ = cartService.shopCart.asObservable();
+  constructor(cartService: CartService) {
     this.cartService = cartService;
   }
+  
+  // Method to get a list of products in shop cart.
+  ngOnInit() {
+    this.subscription = this.cartService.items.subscribe((data) => {
+      this.cart$ = data});
+  } 
 
-  openModal() {
-    this.bsModalRef = this.modalService.show(BsModalComponent);
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   // Method to calculate the total balance of the cart.

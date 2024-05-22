@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { CoffeeShopAboutComponent } from './coffee-shop-about/coffee-shop-about.component';
 import { CoffeeShopCoffeesComponent } from './coffee-shop-coffees/coffee-shop-coffees.component';
 import { CoffeeShopBuyQuantityInputComponent } from './coffee-shop-buy-quantity-input/coffee-shop-buy-quantity-input.component';
+import { ShopCartComponentComponent } from './shop-cart-component/shop-cart-component.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,12 +20,14 @@ import { CoffeeShopBuyQuantityInputComponent } from './coffee-shop-buy-quantity-
     CartComponent,
     CoffeeShopAboutComponent,
     CoffeeShopCoffeesComponent,
-    CoffeeShopBuyQuantityInputComponent,    
+    CoffeeShopBuyQuantityInputComponent,
+    ShopCartComponentComponent,    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

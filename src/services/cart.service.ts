@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 //import { CoffeeService } from './coffee.service';
-import { Coffee } from './coffee-list/Coffee';
-import { BehaviorSubject } from 'rxjs';
+import { Coffee } from '../app/coffee-list/Coffee';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { CoffeeService } from './coffee.service';
 
 @Injectable({
@@ -10,13 +10,13 @@ import { CoffeeService } from './coffee.service';
 
 export class CartService {
   private _shopCart: Coffee[] = []; // Here we will store the products in the cart
-  shopCart: BehaviorSubject<Coffee[]> = new BehaviorSubject<Coffee[]>([]); // Here we will store the products in the cart
+  private shopCart: BehaviorSubject<Coffee[]> = new BehaviorSubject<Coffee[]>([]); // Here we will store the products in the cart
+  public items = this.shopCart.asObservable();
   coffeeService: CoffeeService;
  
- 
-
   constructor(coffeeService : CoffeeService){
     this.coffeeService = coffeeService;
+    this.shopCart.next(this._shopCart);
    }
 
   // Method to add a product to the cart.

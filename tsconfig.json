@@ -28,5 +28,8 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  }, 
+  "include": [
+    "src/**/*.ts" // Add the correct path to the 'include' property
+  ]
 }

@@ -1,26 +1,48 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { CartService } from '../cart.service';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { CartService } from '../../services/cart.service';
 import { Coffee } from './Coffee';
-import { CoffeeService } from '../coffee.service';
-import { Observable } from 'rxjs';
+import { CoffeeService } from '../../services/coffee.service';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { CoffeeDataService } from '../coffee-data.service';
 
 @Component({
   selector: 'app-coffee-list',
   templateUrl: './coffee-list.component.html',
   styleUrl: './coffee-list.component.scss'
 })
-export class CoffeeListComponent {
+export class CoffeeListComponent implements OnInit, OnDestroy{
   cartService: CartService;
-  coffeeList$: Observable<Coffee[]>;
+  coffeeList$: Coffee[] = [];
+  coffeeList: BehaviorSubject<Coffee[]> = new BehaviorSubject<Coffee[]>([]); 
+
+  private subscription: Subscription = new Subscription;
   
-  constructor(cartService: CartService, coffeeService: CoffeeService) {  
-    this.coffeeList$ = coffeeService.coffeeList.asObservable();
+  constructor(cartService: CartService, private coffeeDataService: CoffeeDataService) {  
+    //this.coffeeList$ = coffeeService.coffeeList.asObservable();
     this.cartService = cartService; 
   }
+
+  ngOnInit() {
+    console.log("init");
+    this.subscription = this.coffeeDataService.getAll().subscribe((data) => {
+      this.coffeeList$ = data;
+      this.coffeeList$.forEach((element) => element.quantity = 0);
+      this.coffeeList.next(this.coffeeList$);
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
   
   // Method to get a list of products.
-  ngOnInit() {
-  }
+  // ngOnInit() {
+  //   this.cartService.items.subscribe((data) => {
+  //     this.coffeeList = data});
+  // } 
+  
+
   
   // Method to add a product to the cart.
   addToCart(coffee: Coffee) : void{

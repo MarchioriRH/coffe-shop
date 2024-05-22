@@ -4,21 +4,16 @@
         <tr>
             <th>Poducto</th>
             <th>Cantidad</th>
-            <th style="text-align: center;">Valor Unitario</th>
-            <th style="text-align: center;">Total</th>
+            <th style="text-align: center;">Precio</th>
             <th></th>
         </tr>
     </thead> 
     <tbody>
-        @for (product of (cart$); track product.id) {
+        @for (product of (cartItems); track product.id) {
             <tr>
                 <td>{{ product.name }}</td>
                 <td>{{ product.quantity }}</td>
-                <td style="text-align: center;">{{ product.price | currency }}</td>
                 <td style="text-align: center;">{{ product.price * product.quantity | currency }}</td>
-                <td style="text-align: center;">
-                    <app-coffee-shop-buy-quantity-input [(quantity)]="product.quantity" [max] = "product.quantity"></app-coffee-shop-buy-quantity-input>
-                </td>
                 <td>
                     <button type="button" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Quitar" (click)="removeFromCart(product)">
                         <i class="bi bi-trash3" style="font-size: 1em; color: rgb(20, 20, 20); cursor: pointer;"></i>
@@ -31,7 +26,7 @@
             </tr>
         }
             <tr> 
-                @if (cart$ ) {
+                @if (cartItems) {
                 <td>Total</td>       
                 <td style="text-align: center;">{{ calculateBalance() | currency }}</td>
                     <td>

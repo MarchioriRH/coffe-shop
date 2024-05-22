@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
-import { Coffee } from './coffee-list/Coffee';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable, OnDestroy, OnInit } from '@angular/core';
+import { Coffee } from '../app/coffee-list/Coffee';
+import { BehaviorSubject, Subscription } from 'rxjs';
+import { CoffeeDataService } from '../app/coffee-data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,13 +9,27 @@ import { BehaviorSubject } from 'rxjs';
 export class CoffeeService {  
   private _coffeeList: Coffee[] = []; // Here we will store the products in the cart
   coffeeList: BehaviorSubject<Coffee[]> = new BehaviorSubject<Coffee[]>([]); 
-
+  // private subscription: Subscription = new Subscription;
+  // private coffeeDataService: CoffeeDataService;
 
   constructor() {
-    this._coffeeList = CoffeeService.getCoffees();
-    this.coffeeList.next(this._coffeeList);
+    // this._coffeeList = CoffeeService.getCoffees();
+    // this.coffeeList.next(this._coffeeList);
+    //this.coffeeDataService = coffeeDataService;
   }
 
+  // ngOnInit() {
+  //   console.log("init");
+  //   this.subscription = this.coffeeDataService.getAll().subscribe((data) => {
+  //     this._coffeeList = data;
+  //     console.log("llego la data", this._coffeeList);
+  //     this.coffeeList.next(this._coffeeList);
+  //   });
+  // }
+
+  // ngOnDestroy() {
+  //   this.subscription.unsubscribe();
+  // }
   
   // Method to get a mockup of products.
   static getCoffees() : Coffee [] {

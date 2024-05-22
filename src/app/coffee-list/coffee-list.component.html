@@ -6,11 +6,13 @@
             <th>Tipo</th>
             <th style="text-align: center;">Precio</th>
             <th style="text-align: center;">Stock</th>
+            <th style="text-align: center;">Cantidad</th>
+            <th style="text-align: center;">Acciones</th>
         </tr>
     </thead>  
 
     <tbody>  
-        @for (coffee of (coffeeList$ |async); track coffee.id) {
+        @for (coffee of (coffeeList$); track coffee.id) {
             <tr [ngClass]="{'clearance': coffee.clearance}">
               <td><img class="img-tumbnail" [src]="coffee.image" [alt]="coffee.name" height="100" width="100"> </td>
               <td>{{ coffee.name }}</td>
@@ -21,7 +23,7 @@
               } @else {
                 <td><span class="badge rounded-pill text-bg-warning">SIN STOCK</span></td>
               }
-              <td>
+              <td style="text-align: center;">
                 <app-coffee-shop-buy-quantity-input *ngIf="coffee.stock" [(quantity)]="coffee.quantity" [max] = "coffee.stock" (maxReached)="maxReached($event)"></app-coffee-shop-buy-quantity-input>
               </td>
               <td>
