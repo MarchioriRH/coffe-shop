@@ -42,6 +42,7 @@ export class CartService {
 
     // Method to remove a product from the cart.
   delProduct(coffee: Coffee) {
+    debugger;
     let item = this._shopCart.find((element) => element.id === coffee.id);
     if (item) {
       this.coffeeService.changeStock(coffee);

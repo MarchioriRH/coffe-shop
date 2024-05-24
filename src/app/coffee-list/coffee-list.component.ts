@@ -14,6 +14,7 @@ export class CoffeeListComponent implements OnInit, OnDestroy{
   cartService: CartService;
   coffeeList$: Coffee[] = [];
   coffeeList: BehaviorSubject<Coffee[]> = new BehaviorSubject<Coffee[]>([]); 
+  public items = this.coffeeList.asObservable();
 
   private subscription: Subscription = new Subscription;
   
@@ -57,5 +58,6 @@ export class CoffeeListComponent implements OnInit, OnDestroy{
   maxReached(m : string) {
     alert(m);
   }
+  
 }
 

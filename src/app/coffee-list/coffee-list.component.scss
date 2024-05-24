@@ -5,3 +5,25 @@ td {
 .clearance {
     background-color: aqua;
 }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .card {
+    max-width: 100%;
+    border: 1px solid #ccc;
+    animation: fadeInAnimation 1s ease-in-out forwards;
+    
+    }
+
+
+  .bottom-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  
+   
+    
