@@ -9,21 +9,14 @@ import { CoffeeListComponent } from '../app/coffee-list/coffee-list.component';
 })
 export class CoffeeService {  
   private _coffeeList: Coffee[] = []; // Here we will store the products in the cart
-  coffeeList: BehaviorSubject<Coffee[]> = new BehaviorSubject<Coffee[]>([]); 
-  public items = this.coffeeList.asObservable();
-
-  suscription: Subscription = new Subscription;
-
-  constructor(coffeeListComponent: CoffeeListComponent) {
-    this.suscription = coffeeListComponent.items.subscribe((data) => {
-      this._coffeeList = data;
-      this.coffeeList.next(this._coffeeList);
-    });
+  private coffeeList: BehaviorSubject<Coffee[]> = new BehaviorSubject<Coffee[]>([]); 
+  
+  constructor() {
+    this.coffeeList.next(this._coffeeList);
   }
 
   // Method to change the stock of a product.
   changeStock(coffee: Coffee) {
-    console.log("changeStock", this._coffeeList)
     let item = this._coffeeList.find((element) => element.id === coffee.id);
     if (!item) {
       return;

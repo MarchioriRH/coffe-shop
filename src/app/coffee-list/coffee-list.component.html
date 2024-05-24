@@ -39,31 +39,33 @@
           }
     </tbody>
 </table> -->
+
 <div class="grid-container">
   @for (coffee of (coffeeList$); track coffee.id) {
     <div class="card">
       <img [src]="coffee.image" [alt]="coffee.name" class="card-img-top" width="100" height="200" />
-      <div class="card-body">
-        <h4>{{ coffee.name }}</h4>
-        <h2>{{ coffee.type }}</h2>
-        <h3>{{ coffee.price | currency }}</h3>  
-        <h3>{{ coffee.stock }}</h3>   
-        <div>
-          @if (coffee.stock <= 0) {
-          <span class="badge rounded-pill text-bg-warning">SIN STOCK</span>
-          }
-          <div class="bottom-buttons">
-            <span style="text-align: center;">
-              <app-coffee-shop-buy-quantity-input *ngIf="coffee.stock" [(quantity)]="coffee.quantity" [max] = "coffee.stock" (maxReached)="maxReached($event)"></app-coffee-shop-buy-quantity-input>
-            </span>
-            <span>
-              <button class="btn btn-success" type="button" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Agregar al carrito" (click)="addToCart(coffee)">
-                <i class="bi bi-cart-check" style="font-size: 1em; color: rgb(245, 238, 238); cursor: pointer;"></i>
-              </button>
-            </span>
+      <div class="offer-banner" *ngIf="coffee.clearance">Oferta</div>
+        <div class="card-body" [ngClass]="{'clearance': coffee.clearance}">
+          <h4>{{ coffee.type }}</h4>
+          <h2>{{ coffee.name }}</h2>
+          <h3>{{ coffee.price | currency }}</h3>  
+          <h5>Stock: {{ coffee.stock }}</h5>   
+          <div>
+            @if (coffee.stock <= 0) {
+            <span class="badge rounded-pill text-bg-warning">SIN STOCK</span>
+            }
+            <div class="bottom-buttons">
+              <span style="text-align: center;">
+                <app-coffee-shop-buy-quantity-input *ngIf="coffee.stock" [(quantity)]="coffee.quantity" [max] = "coffee.stock" (maxReached)="maxReached($event)"></app-coffee-shop-buy-quantity-input>
+              </span>
+              <span>
+                <button class="btn btn-success" type="button" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Agregar al carrito" (click)="addToCart(coffee)">
+                  <i class="bi bi-cart-check" style="font-size: 1em; color: rgb(245, 238, 238); cursor: pointer;"></i>
+                </button>
+              </span>
+            </div>
           </div>
         </div>
-      </div>
     </div>
   } @empty {
     <span>
@@ -71,3 +73,27 @@
     </span>
   }
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop maxReachedModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Shop Cart</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+            <div class="col-md-4">
+              {{ message }}
+            </div>
+        </div>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+

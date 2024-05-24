@@ -12,6 +12,7 @@ import { CoffeeShopCoffeesComponent } from './coffee-shop-coffees/coffee-shop-co
 import { CoffeeShopBuyQuantityInputComponent } from './coffee-shop-buy-quantity-input/coffee-shop-buy-quantity-input.component';
 import { ShopCartComponentComponent } from './shop-cart-component/shop-cart-component.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CoffeeShopFooterComponent } from './coffee-shop-footer/coffee-shop-footer.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     CoffeeShopAboutComponent,
     CoffeeShopCoffeesComponent,
     CoffeeShopBuyQuantityInputComponent,
-    ShopCartComponentComponent,    
+    ShopCartComponentComponent,
+    CoffeeShopFooterComponent
   ],
   imports: [
     BrowserModule,
