@@ -3,16 +3,18 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CoffeeListComponent } from './coffee-list/coffee-list.component';
-import { CartComponent } from './cart/cart.component';
+import { CoffeeListComponent } from './components/coffee-shop-list/coffee-shop-list.component';
+import { CartComponent } from './components/coffee-shop-cart/coffee-shop-cart.component';
 
 import { FormsModule } from '@angular/forms';
-import { CoffeeShopAboutComponent } from './coffee-shop-about/coffee-shop-about.component';
-import { CoffeeShopCoffeesComponent } from './coffee-shop-coffees/coffee-shop-coffees.component';
-import { CoffeeShopBuyQuantityInputComponent } from './coffee-shop-buy-quantity-input/coffee-shop-buy-quantity-input.component';
-import { ShopCartComponentComponent } from './shop-cart-component/shop-cart-component.component';
+import { CoffeeShopAboutComponent } from './components/coffee-shop-about/coffee-shop-about.component';
+import { CoffeeShopCoffeesComponent } from './components/coffee-shop-coffees/coffee-shop-coffees.component';
+import { CoffeeShopBuyQuantityInputComponent } from './components/coffee-shop-buy-quantity-input/coffee-shop-buy-quantity-input.component';
+
 import { HttpClientModule } from '@angular/common/http';
-import { CoffeeShopFooterComponent } from './coffee-shop-footer/coffee-shop-footer.component';
+import { CoffeeShopFooterComponent } from './components/coffee-shop-footer/coffee-shop-footer.component';
+import { CoffeeShopContactComponent } from './components/coffee-shop-contact/coffee-shop-contact.component';
+
 
 @NgModule({
   declarations: [
@@ -22,8 +24,8 @@ import { CoffeeShopFooterComponent } from './coffee-shop-footer/coffee-shop-foot
     CoffeeShopAboutComponent,
     CoffeeShopCoffeesComponent,
     CoffeeShopBuyQuantityInputComponent,
-    ShopCartComponentComponent,
-    CoffeeShopFooterComponent
+    CoffeeShopFooterComponent,
+    CoffeeShopContactComponent,
   ],
   imports: [
     BrowserModule,

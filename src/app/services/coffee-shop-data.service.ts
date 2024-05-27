@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Coffee } from './coffee-list/Coffee';
+import { Coffee } from '../models/Coffee';
 
 const URL = 'https://664dce54ede9a2b55654f7de.mockapi.io/api/v1/coffees/Coffees';
 

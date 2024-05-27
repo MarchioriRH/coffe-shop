@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Coffee } from '../coffee-list/Coffee';
+import { Coffee } from '../../models/Coffee';
 
 @Component({
   selector: 'app-coffee-shop-buy-quantity-input',

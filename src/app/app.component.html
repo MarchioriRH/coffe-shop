@@ -1,23 +1,31 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
   <div class="container-fluid">
+    <img src="../assets/img/home_page.jpeg" [routerLink]="['/']" class="nav-img">
     <a class="navbar-brand" href="#">{{title}}</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" [routerLink]="['/']">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/about']">About</a>
-        </li>
-        <li>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <div class="items-container">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" [routerLink]="['/']">Tienda</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/about']">Acerca de nostros</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/contact']">Contacto</a>
+          </li>
+        </div>
+      </ul>      
+      @if ((currentUrl !== '/about') && (currentUrl !== '/contact')) {
+        <div class="button-container">
+          <button type="button" class="btn btn-primary btn-shop-cart" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             <i class="bi bi-cart"></i>
           </button> 
-        </li>
-      </ul>
+        </div>
+      }
     </div>
   </div>
 </nav>

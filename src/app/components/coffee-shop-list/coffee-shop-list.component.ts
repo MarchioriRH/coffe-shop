@@ -1,15 +1,18 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { CartService } from '../../services/cart.service';
-import { Coffee } from './Coffee';
-import { CoffeeService } from '../../services/coffee.service';
-import { BehaviorSubject, Observable, Subscription, pipe } from 'rxjs';
-import { CoffeeDataService } from '../coffee-data.service';
 
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { CartService } from '../../services/coffee-shop-cart.service';
+import { Coffee } from '../../models/Coffee';
+import { CoffeeService } from '../../services/coffee.-shop-list.service';
+import { BehaviorSubject, Observable, Subscription, pipe } from 'rxjs';
+import { CoffeeDataService } from '../../services/coffee-shop-data.service';
+
+import $ from 'jquery';
+import { Modal } from 'bootstrap';
 
 @Component({
   selector: 'app-coffee-list',
-  templateUrl: './coffee-list.component.html',
-  styleUrl: './coffee-list.component.scss'
+  templateUrl: './coffee-shop-list.component.html',
+  styleUrl: './coffee-shop-list.component.scss'
 })
 
 export class CoffeeListComponent implements OnInit, OnDestroy{
@@ -48,8 +51,10 @@ export class CoffeeListComponent implements OnInit, OnDestroy{
 
   maxReached(m : string) {
     this.message = m;
+    console.log(this.message);
+
     //$('#maxReachedModal').modal('show');
-    //alert(m);
+    alert(m);
   }  
 }
 

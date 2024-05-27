@@ -1,12 +1,12 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { CartService } from '../../services/cart.service';
-import { Coffee } from '../coffee-list/Coffee';
+import { CartService } from '../../services/coffee-shop-cart.service';
+import { Coffee } from '../../models/Coffee';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrl: './cart.component.scss'
+  templateUrl: './coffee-shop-cart.component.html',
+  styleUrl: './coffee-shop-cart.component.scss'
 })
 
 export class CartComponent implements OnInit, OnDestroy{
