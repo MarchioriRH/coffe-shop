@@ -1,27 +1,15 @@
 # CoffeShop
+## Alumno: Ruben Horacio Marchiori
+## DNI: 25.300.378
+## Email: rubenmarchiori@gmail.com
+## Sede: Tandil
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
+#Resumen:
+Este proyecto esta basado en las clases que se compartieron en el Classroom de la materia.
+El tema elegido es el de una cafeteria y venta de cafés en grano.
+A diferencia del proyecto visto en clase, el carrito de compras se muestra en una ventana modal. Tambien se incluyeron controles de stock, tanto desde la ventana de la tienda, como desde el carrito de compras. 
+Se crearon varios servicios para la comunicacion de algunos de los componentes y se utilizaron las directivas propuestas por la catedra.
+Los datos para crear la lista de productos se cargan desde una API de prueba alojada en mockapi (https://mockapi.io/clone/664dce54ede9a2b55654f7df).
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
