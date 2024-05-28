@@ -2,7 +2,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { CartService } from '../../services/coffee-shop-cart.service';
 import { Coffee } from '../../models/Coffee';
-import { CoffeeService } from '../../services/coffee.-shop-list.service';
+import { CoffeeService } from '../../services/coffee-shop-coffee.service';
 import { BehaviorSubject, Observable, Subscription, pipe } from 'rxjs';
 import { CoffeeDataService } from '../../services/coffee-shop-data.service';
 
@@ -43,7 +43,7 @@ export class CoffeeListComponent implements OnInit, OnDestroy{
   addToCart(coffee: Coffee) : void{
     if (coffee.stock <= 0 || coffee.quantity <= 0) {
       return;
-    }
+    }    
     this.cartService.addProduct(coffee);
     coffee.stock -= coffee.quantity;
     coffee.quantity = 0;

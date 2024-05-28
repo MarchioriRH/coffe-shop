@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Coffee } from '../../models/Coffee';
+import { CoffeeService } from '../../services/coffee-shop-coffee.service';
 
 @Component({
   selector: 'app-coffee-shop-buy-quantity-input',
@@ -7,6 +8,7 @@ import { Coffee } from '../../models/Coffee';
   styleUrl: './coffee-shop-buy-quantity-input.component.scss'
 })
 export class CoffeeShopBuyQuantityInputComponent implements OnInit{
+  private MAXREACHEDMESSAGE: string = 'Se alcanzó el máximo de stock: ';
   
   constructor() { }
   
@@ -20,18 +22,15 @@ export class CoffeeShopBuyQuantityInputComponent implements OnInit{
   @Output() maxReached: EventEmitter<string> = new EventEmitter<string>();
   // @Output() custom: EventEmitter<number> = new EventEmitter<number>();
   
-  
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   upQuantity() : void {
     if(this.quantity < this.max) {
       this.quantity++;
       this.quantityChange.emit(this.quantity);
     } else {
-      this.maxReached.emit('Se alcanzó el máximo de stock: ' + this.max);
+      this.maxReached.emit(this.MAXREACHEDMESSAGE + this.max);
     }
-    // this.custom.emit(coffee.quantity);
   }
 
   downQuantity() : void {

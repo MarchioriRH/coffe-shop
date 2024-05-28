@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 //import { CoffeeService } from './coffee.service';
-import { Coffee } from '../app/coffee-list/Coffee';
+import { Coffee } from '../models/Coffee';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { CoffeeService } from './coffee.service';
+import { CoffeeService } from './coffee-shop-coffee.service';
 
 @Injectable({
   providedIn: 'root', // This ensures that the service is provided in the root injector
@@ -43,6 +43,7 @@ export class CartService {
     // Method to remove a product from the cart.
   delProduct(coffee: Coffee) {
     //debugger;
+    console.log(coffee.quantity);
     let item = this._shopCart.find((element) => element.id === coffee.id);
     if (item) {
       this.coffeeService.changeStock(coffee);

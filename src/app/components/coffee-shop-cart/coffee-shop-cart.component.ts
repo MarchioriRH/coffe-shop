@@ -2,6 +2,7 @@ import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { CartService } from '../../services/coffee-shop-cart.service';
 import { Coffee } from '../../models/Coffee';
 import { Observable, Subscription } from 'rxjs';
+import { CoffeeService } from '../../services/coffee-shop-coffee.service';
 
 @Component({
   selector: 'app-cart',
@@ -11,12 +12,9 @@ import { Observable, Subscription } from 'rxjs';
 
 export class CartComponent implements OnInit, OnDestroy{
   cart$: Coffee[] = [];
-  cartService: CartService;
   private subscription: Subscription = new Subscription;
 
-  constructor(cartService: CartService) {
-    this.cartService = cartService;
-  }
+  constructor(private cartService: CartService, private coffeeService: CoffeeService) { }
   
   // Method to get a list of products in shop cart.
   ngOnInit() {
@@ -36,6 +34,16 @@ export class CartComponent implements OnInit, OnDestroy{
   // Method to remove a product from the cart.
   removeFromCart(coffee: Coffee) {
     this.cartService.delProduct(coffee);
+  }
+
+  addStock(coffee: Coffee) {
+    console.log(coffee.quantity);
+    if (coffee.quantity <= 1) {
+      this.removeFromCart(coffee);
+      return;
+    }
+    coffee.quantity--;
+    this.coffeeService.changeStock(coffee, 1);
   }
 
   // Method to clear the cart.

@@ -1,13 +1,12 @@
-<!---->
+<!-- Cart Table -->
 <table class="table">
     <thead>
         <tr>
             <th>Poducto</th>
             <th>Cantidad</th>
             <th class="coffee-list-th">Valor Unitario</th>
-            <th class="coffee-list-th-centered">Total</th>
-            <th class="coffee-list-th-centered">Cantidad</th>
-            <th class="coffee-list-th-centered">Acciones</th>
+            <th class="coffee-list-th-centered">Subtotal</th>
+            <th class="coffee-list-th-centered" colspan="2">Acciones</th>
         </tr>
     </thead> 
     <tbody>
@@ -17,8 +16,10 @@
                 <td class="coffee-list-td-centered">{{ product.quantity }}</td>
                 <td class="coffee-list-td-centered">{{ product.price | currency }}</td>
                 <td class="coffee-list-td-centered">{{ product.price * product.quantity | currency }}</td>
-                <td class="coffee-list-td-centered">
-                    <app-coffee-shop-buy-quantity-input [(quantity)]="product.quantity" [max] = "product.quantity"></app-coffee-shop-buy-quantity-input>
+                <td class="coffee-list-td-centered">                    
+                    <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Quitar uno" (click)="addStock(product);">
+                        <i class="bi bi-dash" style="font-size: 1em; color: rgb(20, 20, 20); cursor: pointer;"></i>
+                    </button>
                 </td>
                 <td class="coffee-list-td-centered" >
                     <button type="button" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Quitar"  (click)="removeFromCart(product)">

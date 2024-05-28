@@ -1,8 +1,8 @@
 import { Injectable, OnDestroy, OnInit } from '@angular/core';
-import { Coffee } from '../app/coffee-list/Coffee';
+import { Coffee } from '../models/Coffee'
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { CoffeeDataService } from '../app/coffee-data.service';
-import { CoffeeListComponent } from '../app/coffee-list/coffee-list.component';
+import { CoffeeDataService } from '../services/coffee-shop-data.service';
+import { CoffeeListComponent } from '../components/coffee-shop-list/coffee-shop-list.component';
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +16,16 @@ export class CoffeeService {
   }
 
   // Method to change the stock of a product.
-  changeStock(coffee: Coffee) {
+  changeStock(coffee: Coffee, quantity: number = 0) {
     let item = this._coffeeList.find((element) => element.id === coffee.id);
     if (!item) {
       return;
     }
-    item.stock += coffee.quantity;
+    if (quantity > 0) {
+      item.stock += quantity;
+    } else {
+      item.stock += coffee.quantity;
+    }
     this.coffeeList.next(this._coffeeList);
   }
 
