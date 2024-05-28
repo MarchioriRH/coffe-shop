@@ -11,7 +11,7 @@ A diferencia del proyecto visto en clase, el carrito de compras se muestra en un
 Se crearon varios servicios para la comunicacion de algunos de los componentes y se utilizaron las directivas propuestas por la catedra.
 Los datos para crear la lista de productos se cargan desde una API de prueba alojada en mockapi 
 
-# Enlaces
+# Enlaces:
 Mockapi: https://mockapi.io/clone/664dce54ede9a2b55654f7df                                                                                   
 Stackblitz: https://stackblitz.com/~/github.com/MarchioriRH/coffe-shop
 
