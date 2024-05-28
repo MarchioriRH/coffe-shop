@@ -1,3 +1,21 @@
+
+<!-- Messagge Modal -->
+<div class="modal fade" id="maxReachedModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Atención</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <span class="message-span">{{ message }}</span>          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Coffee-List -->
 <div class="grid-container">
   @for (coffee of (coffeeList$); track coffee.id) {
@@ -11,49 +29,30 @@
           @if (coffee.stock <= 0) {
             <div class="badge-centered"> 
               <span class="badge rounded-pill text-bg-warning">SIN STOCK</span>
-            </div>
+            </div>  
           } @else {
             <h5>Stock: {{ coffee.stock }}</h5>   
-          }
+          }  
           <div>
             <div class="bottom-buttons">
               <span style="text-align: center;">
                 <app-coffee-shop-buy-quantity-input *ngIf="coffee.stock" [(quantity)]="coffee.quantity" [max] = "coffee.stock" (maxReached)="maxReached($event)"></app-coffee-shop-buy-quantity-input>
-              </span>
+              </span>  
               @if (coffee.stock > 0) {
                 <span>
                   <button class="btn btn-success" type="button" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Agregar al carrito" (click)="addToCart(coffee)">
                     Agregar
-                  </button>
-                </span>
-              }
-            </div>
-          </div>
-        </div>
-    </div>
+                  </button>  
+                </span>  
+              }  
+            </div>  
+          </div>  
+        </div>  
+    </div>    
   } @empty {
     <span>
       <td colspan="3"><span class="badge text-bg-secondary">No hay cafes para mostrar.</span></td>
-    </span>
-  }
-</div>
-
-<!-- Messagge Modal -->
-<div class="modal fade" id="maxReachedModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Shop Cart</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-            <div class="col-md-4">
-              {{ message }}
-            </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+    </span>  
+  }  
+</div>  
 

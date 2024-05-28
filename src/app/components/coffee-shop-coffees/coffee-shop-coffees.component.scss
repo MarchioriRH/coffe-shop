@@ -3,7 +3,7 @@
     max-width: 100%;
 }
   
-.modal.show .modal-dialog {
+.modal, .modal.show, .modal-dialog {
   --bs-modal-width: 700px;
 }
 

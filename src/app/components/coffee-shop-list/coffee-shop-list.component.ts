@@ -1,13 +1,15 @@
 
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CartService } from '../../services/coffee-shop-cart.service';
 import { Coffee } from '../../models/Coffee';
 import { CoffeeService } from '../../services/coffee-shop-coffee.service';
-import { BehaviorSubject, Observable, Subscription, pipe } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { CoffeeDataService } from '../../services/coffee-shop-data.service';
 
-import $ from 'jquery';
-import { Modal } from 'bootstrap';
+// import $ from 'jquery';
+// import * as bootstrap from 'bootstrap';
+
+declare var $: any;
 
 @Component({
   selector: 'app-coffee-list',
@@ -20,7 +22,7 @@ export class CoffeeListComponent implements OnInit, OnDestroy{
   coffeeList: BehaviorSubject<Coffee[]> = new BehaviorSubject<Coffee[]>([]); 
   public items = this.coffeeList.asObservable();
   message : string = "";
-
+  
   private subscription: Subscription = new Subscription;   
 
   constructor(private cartService: CartService, private coffeeDataService: CoffeeDataService, 
@@ -48,13 +50,11 @@ export class CoffeeListComponent implements OnInit, OnDestroy{
     coffee.stock -= coffee.quantity;
     coffee.quantity = 0;
   }    
-
-  maxReached(m : string) {
+  
+  // Method to show messagge when product stock is 0.
+  maxReached(m : string) : void{
     this.message = m;
-    console.log(this.message);
-
-    //$('#maxReachedModal').modal('show');
-    alert(m);
+    $('#maxReachedModal').modal('toggle');
   }  
 }
 

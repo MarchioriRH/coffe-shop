@@ -6,22 +6,22 @@
             <th>Cantidad</th>
             <th class="coffee-list-th">Valor Unitario</th>
             <th class="coffee-list-th-centered">Subtotal</th>
-            <th class="coffee-list-th-centered" colspan="2">Acciones</th>
+            <th class="coffee-list-th-centered coffee-list-actions" colspan="2">Acciones</th>
         </tr>
     </thead> 
-    <tbody>
+    <tbody class="table-group-divider">
         @for (product of (cart$); track product.id) {
             <tr>
                 <td class="coffee-list-name">{{ product.name }}</td>
                 <td class="coffee-list-td-centered">{{ product.quantity }}</td>
                 <td class="coffee-list-td-centered">{{ product.price | currency }}</td>
                 <td class="coffee-list-td-centered">{{ product.price * product.quantity | currency }}</td>
-                <td class="coffee-list-td-centered">                    
+                <td class="coffee-list-td-centered coffee-list-actions">                    
                     <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Quitar uno" (click)="addStock(product);">
-                        <i class="bi bi-dash" style="font-size: 1em; color: rgb(20, 20, 20); cursor: pointer;"></i>
+                        <i class="bi btn-decrement" style="font-size: 1em; color: rgb(247, 245, 245); border: radius 100px; cursor: pointer;">-1</i>
                     </button>
                 </td>
-                <td class="coffee-list-td-centered" >
+                <td class="coffee-list-td-centered coffee-list-actions" >
                     <button type="button" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Quitar"  (click)="removeFromCart(product)">
                         <i class="bi bi-trash3" style="font-size: 1em; color: rgb(20, 20, 20); cursor: pointer;"></i>
                     </button>
@@ -32,18 +32,18 @@
                 <td colspan="3" class="badge text-bg-secondary">No hay productos en el carrito.</td>
             </tr>
         }
-            <tr> 
+            <tr class="table-group-divider"> 
                 @if (cart$.length > 0) {
                     <td class="total-balance-text-td">Total</td>       
                     <td colspan="3"class="total-balance-price-td"> {{ calculateBalance() | currency }}</td>
-                    <td class="coffee-list-td-centered">
+                    <td class="coffee-list-td-centered coffee-list-actions">
                         <button type="button" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Comprar">
-                            Comprar
+                            <span>Comprar</span>
                         </button>                         
                     </td >
-                    <td colspan="2" class="coffee-list-td-centered"> 
-                        <button class="btn btn-danger" (click)="clearCart()" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Vaciar carrito">
-                            Vaciar
+                    <td colspan="2" class="coffee-list-td-centered coffee-list-actions"> 
+                        <button class="btn btn-danger btn-clear-cart" (click)="clearCart()" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Vaciar carrito">
+                            <span >Vaciar</span>  
                         </button>                        
                     </td>
                 } @else {

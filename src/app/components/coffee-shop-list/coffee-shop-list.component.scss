@@ -11,7 +11,7 @@ td {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    padding: 20px;    
+    padding: 20px 0;    
   }
 
 .grid-container:hover > :not(:hover) {
@@ -21,9 +21,8 @@ td {
 .card {
   position: relative;
   max-width: 100%;
-  border: 1px solid #ccc;
-  //animation: fadeInAnimation 1s ease-in-out forwards;  
-  transition: opacity 0.6s ease;
+  border: 1px solid #ccc; 
+  transition: opacity 2s ease;
 }
 
 .bottom-buttons {
@@ -46,8 +45,7 @@ td {
 .badge {
   --bs-badge-padding-x: 5em;
   --bs-badge-padding-y: 1em;
-}
-  
+}  
 
 .badge-centered {
   display: flex;
@@ -56,7 +54,15 @@ td {
   margin-top: 2em;
 }
 
-
 .input-group {
   justify-content: center;
+}
+
+.message-span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: larger;
+  font-weight: 600;
+  padding: 30px 0px;
 }

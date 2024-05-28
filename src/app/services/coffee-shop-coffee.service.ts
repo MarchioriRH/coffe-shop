@@ -1,8 +1,6 @@
-import { Injectable, OnDestroy, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Coffee } from '../models/Coffee'
-import { BehaviorSubject, Subscription } from 'rxjs';
-import { CoffeeDataService } from '../services/coffee-shop-data.service';
-import { CoffeeListComponent } from '../components/coffee-shop-list/coffee-shop-list.component';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

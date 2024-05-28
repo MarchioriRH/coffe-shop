@@ -1,7 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Coffee } from '../../models/Coffee';
-import { CoffeeService } from '../../services/coffee-shop-coffee.service';
-
 @Component({
   selector: 'app-coffee-shop-buy-quantity-input',
   templateUrl: './coffee-shop-buy-quantity-input.component.html',
@@ -20,10 +17,10 @@ export class CoffeeShopBuyQuantityInputComponent implements OnInit{
   
   @Output() quantityChange: EventEmitter<number> = new EventEmitter<number>();
   @Output() maxReached: EventEmitter<string> = new EventEmitter<string>();
-  // @Output() custom: EventEmitter<number> = new EventEmitter<number>();
   
   ngOnInit(): void { }
 
+  // Increment quantity
   upQuantity() : void {
     if(this.quantity < this.max) {
       this.quantity++;
@@ -33,6 +30,7 @@ export class CoffeeShopBuyQuantityInputComponent implements OnInit{
     }
   }
 
+  // Decrement quantity
   downQuantity() : void {
     if(this.quantity > 0) {
       this.quantity--;
@@ -42,6 +40,7 @@ export class CoffeeShopBuyQuantityInputComponent implements OnInit{
     }
   }
   
+  // Change quantity and format the input
   changeQuantity(event: any): void {  
     let inputValue = event.target.value;
     if (!/^\d*$/.test(inputValue)) {

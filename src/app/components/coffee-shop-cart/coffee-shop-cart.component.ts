@@ -36,8 +36,8 @@ export class CartComponent implements OnInit, OnDestroy{
     this.cartService.delProduct(coffee);
   }
 
+  // Method to increment product stock when it is removed from cart.
   addStock(coffee: Coffee) {
-    console.log(coffee.quantity);
     if (coffee.quantity <= 1) {
       this.removeFromCart(coffee);
       return;
