@@ -1,11 +1,15 @@
+/**
+ * @description Service to manage the shop cart, add, remove and calculate the total balance.
+ * @class CartService 
+ */
+
 import { Injectable } from '@angular/core';
-//import { CoffeeService } from './coffee.service';
 import { Coffee } from '../models/Coffee';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { CoffeeService } from './coffee-shop-coffee.service';
 
 @Injectable({
-  providedIn: 'root', // This ensures that the service is provided in the root injector
+  providedIn: 'root', 
 })
 
 export class CartService {
@@ -19,29 +23,46 @@ export class CartService {
     this.shopCart.next(this._shopCart);
    }
 
-  // Method to add a product to the cart.
-  addProduct(coffee: Coffee) {
+  /** 
+   * Method to add a product to the cart.
+   * @return void
+   * @description Method to add a product to the cart.
+   * @param {Coffee} coffee
+   * @observable
+   **/ 
+  addProduct(coffee: Coffee) : void {
       let item = this._shopCart.find((element) => element.id === coffee.id);
-      //console.log(item);
       if (!item) {
-        this._shopCart.push({...coffee});
+        this._shopCart.push({...coffee}); // We use the spread operator to create a new object
       } else {
         item.quantity += coffee.quantity;
       }
-      this.shopCart.next(this._shopCart);
+      this.shopCart.next(this._shopCart); // We notify the subscribers that the cart has changed
     }
 
-  // Method to clear the cart.
-  clearCart() {
+  /**
+   * Method to clear the cart.
+   * @return void
+   * @description Method to clear the cart.
+   * @param void
+   * @observable
+   **/ 
+  clearCart() : void {
       for (let item of this._shopCart) {
-        this.coffeeService.changeStock(item);
+        this.coffeeService.changeStock(item); // We restore the stock of the products
       }
       this._shopCart = [];
       this.shopCart.next(this._shopCart);
     }
 
-    // Method to remove a product from the cart.
-  delProduct(coffee: Coffee) {
+  /**
+   * Method to remove a product from the cart.
+   * @return void
+   * @description Method to remove a product from the cart.
+   * @param {Coffee} coffee
+   * @observable
+   **/ 
+  delProduct(coffee: Coffee) : void {
     let item = this._shopCart.find((element) => element.id === coffee.id);
     if (item) {
       this.coffeeService.changeStock(coffee);
@@ -53,7 +74,13 @@ export class CartService {
     this.shopCart.next(this._shopCart);
   }
 
-  // Method to calculate the total balance of the cart.
+  /**
+   * Method to calculate the total balance of the cart.
+   * @return number
+   * @description Method to calculate the total balance of the cart.
+   * @param void
+   * @observable
+   **/ 
   calculateBalance() : number {
     return this._shopCart.reduce((acc, item) => acc + item.price * item.quantity, 0);
   }

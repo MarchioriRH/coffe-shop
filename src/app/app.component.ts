@@ -8,8 +8,14 @@ import {  NavigationEnd, Router } from '@angular/router';
 
 export class AppComponent {
   title = 'Coffee-Shop';
-  currentUrl: string;
+  currentUrl: string; // Here we will store the current URL
 
+  /**
+   * Constructor of the class 
+   * @description Constructor of the class
+   * @observable
+   * @param {Router} router
+   */
   constructor(private router: Router) {
     this.currentUrl = window.location.href;
     this.router.events.subscribe((event) => {

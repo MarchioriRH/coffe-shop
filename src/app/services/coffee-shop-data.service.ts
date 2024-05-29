@@ -1,3 +1,8 @@
+/**
+ * @description Service to get all products from the API.
+ * @class CoffeeDataService
+ */
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -13,7 +18,12 @@ export class CoffeeDataService {
 
   constructor(private http : HttpClient) { }
   
-  // Method to get all products from the API.
+  /**
+   * Method to get all products from the API.
+   * @return Observable<Coffee[]>
+   * @description Method to get all products from the API.
+   * @observable 
+   **/ 
   public getAll(): Observable<Coffee[]> { 
     console.log('GET', URL);
     return this.http.get<Coffee[]>(URL);

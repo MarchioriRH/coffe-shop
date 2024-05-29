@@ -1,3 +1,9 @@
+/**
+ * @description This component is used to manage the quantity of products to buy.
+ * @class CoffeeShopBuyQuantityInputComponent
+ * @implements OnInit
+ */
+
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 @Component({
   selector: 'app-coffee-shop-buy-quantity-input',
@@ -20,7 +26,12 @@ export class CoffeeShopBuyQuantityInputComponent implements OnInit{
   
   ngOnInit(): void { }
 
-  // Increment quantity
+  /** 
+   * Increment quantity in number input of quantity selector.
+   * @return void
+   * @description Increment quantity in number input of quantity selector.
+   * @param void
+   **/ 
   upQuantity() : void {
     if(this.quantity < this.max) {
       this.quantity++;
@@ -30,7 +41,12 @@ export class CoffeeShopBuyQuantityInputComponent implements OnInit{
     }
   }
 
-  // Decrement quantity
+  /** 
+  * Decrement quantity in number input of quantity selector.
+  * @return void
+  * @description Decrement quantity in number input of quantity selector.
+  * @param void
+  */   
   downQuantity() : void {
     if(this.quantity > 0) {
       this.quantity--;
@@ -40,11 +56,16 @@ export class CoffeeShopBuyQuantityInputComponent implements OnInit{
     }
   }
   
-  // Change quantity and format the input
+  /** 
+   * Change quantity and format the input
+   * @return void
+   * @description Change quantity and format the input
+   * @param {event} event
+  */
   changeQuantity(event: any): void {  
     let inputValue = event.target.value;
     if (!/^\d*$/.test(inputValue)) {
-      // Si el valor de entrada no es un número, borra el último carácter ingresado
+      // If the input value is not a number, delete the last entered character
       this.quantity = inputValue.slice(0, -1);
     } else if(inputValue > this.max) {      
       this.quantity = this.max;

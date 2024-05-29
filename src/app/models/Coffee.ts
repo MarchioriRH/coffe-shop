@@ -1,3 +1,9 @@
+/**
+ * Interface for Coffee
+ * @interface Coffee
+ * @description Interface for Coffee
+ */
+
 export interface Coffee {
     id: number;
     name: string;

@@ -12,7 +12,7 @@ td {
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     padding: 20px 0;    
-  }
+}
 
 .grid-container:hover > :not(:hover) {
     opacity: 0.3;
