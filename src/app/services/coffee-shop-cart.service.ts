@@ -16,10 +16,8 @@ export class CartService {
   private _shopCart: Coffee[] = []; // Here we will store the products in the cart
   private shopCart: BehaviorSubject<Coffee[]> = new BehaviorSubject<Coffee[]>([]); // Here we will store the products in the cart
   public items = this.shopCart.asObservable();
-  coffeeService: CoffeeService;
  
-  constructor(coffeeService : CoffeeService){
-    this.coffeeService = coffeeService;
+  constructor(private coffeeService : CoffeeService){
     this.shopCart.next(this._shopCart);
    }
 

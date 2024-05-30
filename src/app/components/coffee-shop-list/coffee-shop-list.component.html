@@ -4,7 +4,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Atención</h5>
+        <h5 class="modal-title" id="staticBackdropLabel">Atención ⚠️</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -26,27 +26,23 @@
           <h4>{{ coffee.type }}</h4>
           <h2>{{ coffee.name }}</h2>
           <h3>{{ coffee.price | currency }}</h3>  
-          @if (coffee.stock <= 0) {
+          @if (coffee.stock > 0) {
+            <h5>Stock: {{ coffee.stock }}</h5>   
+            <div class="bottom-buttons">
+              <span class="quantity-selector-span">
+                <app-coffee-shop-buy-quantity-input *ngIf="coffee.stock" [(quantity)]="coffee.quantity" [max] = "coffee.stock" (maxReached)="maxReached($event)"></app-coffee-shop-buy-quantity-input>
+              </span>               
+              <span>
+                <button class="btn btn-success" type="button" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Agregar al carrito" (click)="addToCart(coffee)">
+                  Agregar
+                </button>  
+              </span>             
+            </div>  
+          } @else {
             <div class="badge-centered"> 
               <span class="badge rounded-pill text-bg-warning">SIN STOCK</span>
             </div>  
-          } @else {
-            <h5>Stock: {{ coffee.stock }}</h5>   
           }  
-          <div>
-            <div class="bottom-buttons">
-              <span style="text-align: center;">
-                <app-coffee-shop-buy-quantity-input *ngIf="coffee.stock" [(quantity)]="coffee.quantity" [max] = "coffee.stock" (maxReached)="maxReached($event)"></app-coffee-shop-buy-quantity-input>
-              </span>  
-              @if (coffee.stock > 0) {
-                <span>
-                  <button class="btn btn-success" type="button" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Agregar al carrito" (click)="addToCart(coffee)">
-                    Agregar
-                  </button>  
-                </span>  
-              }  
-            </div>  
-          </div>  
         </div>  
     </div>    
   } @empty {

@@ -10,8 +10,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   templateUrl: './coffee-shop-buy-quantity-input.component.html',
   styleUrl: './coffee-shop-buy-quantity-input.component.scss'
 })
+
 export class CoffeeShopBuyQuantityInputComponent implements OnInit{
-  private MAXREACHEDMESSAGE: string = 'Se alcanzó el máximo de stock: ';
+  private MAXREACHEDMESSAGE: string = 'Se alcanzó el máximo disponible: ';
   
   constructor() { }
   

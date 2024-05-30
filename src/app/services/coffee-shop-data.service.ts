@@ -25,7 +25,6 @@ export class CoffeeDataService {
    * @observable 
    **/ 
   public getAll(): Observable<Coffee[]> { 
-    console.log('GET', URL);
     return this.http.get<Coffee[]>(URL);
   }
 

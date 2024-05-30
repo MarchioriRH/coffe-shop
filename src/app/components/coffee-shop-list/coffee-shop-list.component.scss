@@ -1,21 +1,21 @@
 
 td {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
 .clearance {
-    background-color: rgb(247, 213, 120);
+  background-color: rgb(247, 213, 120);
 }
 
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    padding: 20px 0;    
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px 0;    
 }
 
 .grid-container:hover > :not(:hover) {
-    opacity: 0.3;
+  opacity: 0.3;
 }
   
 .card {
@@ -65,4 +65,8 @@ td {
   font-size: larger;
   font-weight: 600;
   padding: 30px 0px;
+}
+
+.quantity-selector-span {
+  text-align: center;
 }
